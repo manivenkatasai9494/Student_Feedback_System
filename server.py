@@ -177,6 +177,11 @@ def display():
         return render_template('feedbacks.html', tables=[df.to_html(classes='data', header="true")])
 
 
-app.secret_key = os.urandom(12)
-app.run(port=5978, host='0.0.0.0', debug=True)
+# Set a fixed secret key for production (replace with your own secure key)
+app.secret_key = 'your-secure-secret-key-here'
+
+if __name__ == '__main__':
+    from waitress import serve
+    print("Server is running on http://127.0.0.1:5978")
+    serve(app, host='127.0.0.1', port=5978)
 
